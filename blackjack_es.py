@@ -101,8 +101,18 @@ def play_again(ask):
     answer = input(f'{ask}').lower()
     while answer not in ["s", "n"]:
         answer = input(
-            '\nNo entendí. Tipeá S si la respuesta es sí y N si la respuesta es no.').lower()
+            '\nNo entendí. Tipeá S si la respuesta es sí y N si la respuesta es no: ').lower()
     return output[answer]
+
+
+def reinit_and_shuffle_deck():
+    deck.__init__()
+    deck.shuffle()
+
+
+def empty_hands():
+    human.hand = []
+    dealer.hand = []
 
 
 # Game Setup
@@ -128,9 +138,9 @@ while True:
         if not play_again(ask='¿Querés jugar de nuevo? S/N: '):
             print("\n\n\n¿Justo ahora vas a abandonar? ¿Y si la próxima te iba bien?\n")
             break
-        human.bankroll = 75 - games * 2
-        deck.__init__()
-        deck.shuffle()
+        human.bankroll = 75 - games * games
+        reinit_and_shuffle_deck()
+        empty_hands()
         games += 1
 
         if human.bankroll < 1:
@@ -140,8 +150,8 @@ while True:
                       "también nos permite seguir apostando, ¿no?\n")
                 break
             human.bankroll = 1000
-            deck.__init__()
-            deck.shuffle()
+            reinit_and_shuffle_deck()
+            empty_hands()
             games += 1
             print(
                 f"\nVendiste un órgano y ahora tenés ${human.bankroll}, ¡excelente decisión, felicidades!")
@@ -154,8 +164,8 @@ while True:
         if not play_again(ask='¿Querés jugar de nuevo? S/N: '):
             break
         human.bankroll += 25 + games * games
-        deck.__init__()
-        deck.shuffle()
+        reinit_and_shuffle_deck()
+        empty_hands()
         games += 1
 
     # placing the bet
@@ -255,5 +265,4 @@ while True:
         human.remove_money(bet)
 
     # empty player hands
-    human.hand = []
-    dealer.hand = []
+    empty_hands()
