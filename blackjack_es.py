@@ -130,6 +130,7 @@ while True:
             break
         human.bankroll = 75 - games * 2
         deck.__init__()
+        deck.shuffle()
         games += 1
 
         if human.bankroll < 1:
@@ -140,6 +141,7 @@ while True:
                 break
             human.bankroll = 1000
             deck.__init__()
+            deck.shuffle()
             games += 1
             print(
                 f"\nVendiste un órgano y ahora tenés ${human.bankroll}, ¡excelente decisión, felicidades!")
@@ -153,6 +155,7 @@ while True:
             break
         human.bankroll += 25 + games * games
         deck.__init__()
+        deck.shuffle()
         games += 1
 
     # placing the bet
