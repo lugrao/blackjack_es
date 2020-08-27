@@ -96,12 +96,12 @@ def deal_cards(n):
         dealer.hit(deck)
 
 
-def play_again():
+def play_again(ask):
     output = {"s": True, "n": False}
-    answer = input('¿Querés jugar de nuevo? S/N').lower()
+    answer = input(f'{ask}').lower()
     while answer not in ["s", "n"]:
         answer = input(
-            '\nNo entendí. Tipeá S si querés jugar de nuevo y N si no querés.').lower()
+            '\nNo entendí. Tipeá S si la respuesta es sí y N si la respuesta es no.').lower()
     return output[answer]
 
 
@@ -126,17 +126,29 @@ while True:
         print("\n¡No tenés más plata para apostar! ¡Se terminó el juego!"
               f"\n\nTerminaste con ${human.bankroll}. Deberías vender el auto y jugar de nuevo.\n")
 
-        if not play_again():
+        if not play_again(ask='¿Querés jugar de nuevo? S/N'):
             print("\n\n\n¿Justo ahora vas a abandonar? ¿Y si la próxima te iba bien?\n")
             break
         human.bankroll = 75 - games * 2
         games += 1
 
+        if human.bankroll < 1:
+            print("\n\n¡No tenés más plata para jugar! ¡Todo terminó!\n")
+            if not play_again(ask='¿Estarías interesado en vender algún órgano para seguir jugando? S/N'):
+                print("\nEs entendible. Al fin y al cabo, mantener los órganos en su lugar "
+                      "también nos permite seguir apostando, ¿no?\n")
+                break
+            human.bankroll = 1000
+            games += 1
+            print(
+                f"\nVendiste un órgano y ahora tenés ${human.bankroll}, ¡excelente decisión, felicidades!")
+            input("\n[Enter para continuar]")
+
     if len(deck.cards) < 10:
         print("\nNo hay suficientes cartas para seguir jugando. ¡Se terminó el juego!"
               f"\n\nTerminaste con ${human.bankroll}. Recordá seguir apostando sin importar cuánto pierdas.\n")
 
-        if not play_again():
+        if not play_again(ask='¿Querés jugar de nuevo? S/N'):
             break
         human.bankroll += 25 + games * games
         games += 1
