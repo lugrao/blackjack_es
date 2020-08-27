@@ -97,10 +97,11 @@ def deal_cards(n):
 
 
 def play_again():
-    answer = ""
     output = {"s": True, "n": False}
+    answer = input('¿Querés jugar de nuevo? S/N').lower()
     while answer not in ["s", "n"]:
-        answer = input('¿Querés jugar de nuevo? S/N').lower()
+        answer = input(
+            '\nNo entendí. Tipeá S si querés jugar de nuevo y N si no querés.').lower()
     return output[answer]
 
 
@@ -126,7 +127,7 @@ while True:
               f"\n\nTerminaste con ${human.bankroll}. Deberías vender el auto y jugar de nuevo.\n")
 
         if not play_again():
-            print("\n\n\n¿Justo ahora vas a abandonar? ¿Y si la próxima te va bien?\n")
+            print("\n\n\n¿Justo ahora vas a abandonar? ¿Y si la próxima te iba bien?\n")
             break
         human.bankroll = 75 - games * 2
         games += 1
