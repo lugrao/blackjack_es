@@ -120,7 +120,7 @@ input('\n[Enter para continuar]')
 games = 0
 
 while True:
-
+    print(f"CANTIDAD DE CARTAS EN EL MAZO: {len(deck.cards)}")
     # check if no more money or cards:
     if human.bankroll == 0:
         print("\n¡No tenés más plata para apostar! ¡Se terminó el juego!"
@@ -139,6 +139,7 @@ while True:
                       "también nos permite seguir apostando, ¿no?\n")
                 break
             human.bankroll = 1000
+            deck.__init__()
             games += 1
             print(
                 f"\nVendiste un órgano y ahora tenés ${human.bankroll}, ¡excelente decisión, felicidades!")
@@ -151,6 +152,7 @@ while True:
         if not play_again(ask='¿Querés jugar de nuevo? S/N'):
             break
         human.bankroll += 25 + games * games
+        deck.__init__()
         games += 1
 
     # placing the bet
