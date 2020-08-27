@@ -1,2 +1,2 @@
 # Blackjack
-Un blackjack con reglas simplificadas para seguir aprendiendo OOP con Python.
+Un blackjack con reglas simplificadas para seguir aprendiendo OOP con Python. ¡En español!
