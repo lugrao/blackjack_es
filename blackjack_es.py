@@ -130,6 +130,7 @@ while True:
             print("\n\n\n¿Justo ahora vas a abandonar? ¿Y si la próxima te iba bien?\n")
             break
         human.bankroll = 75 - games * 2
+        deck.__init__()
         games += 1
 
         if human.bankroll < 1:
@@ -145,7 +146,7 @@ while True:
                 f"\nVendiste un órgano y ahora tenés ${human.bankroll}, ¡excelente decisión, felicidades!")
             input("\n[Enter para continuar]")
 
-    if len(deck.cards) < 10:
+    if len(deck.cards) < 13:
         print("\nNo hay suficientes cartas para seguir jugando. ¡Se terminó el juego!"
               f"\n\nTerminaste con ${human.bankroll}. Recordá seguir apostando sin importar cuánto pierdas.\n")
 
