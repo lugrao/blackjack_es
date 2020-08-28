@@ -158,12 +158,11 @@ while True:
             input("\n[Enter para continuar]")
 
     if len(deck.cards) < 13:
-        print("\nNo hay suficientes cartas para seguir jugando. ¡Se terminó el juego!"
-              f"\n\nTerminaste con ${human.bankroll}. Recordá seguir apostando sin importar cuánto pierdas.\n")
-
-        if not play_again(ask='¿Querés jugar de nuevo? S/N: '):
+        print("\n¡No hay suficientes cartas para seguir jugando!")
+        if not play_again(ask='¿Barajar y dar de nuevo? S/N: '):
+            print(
+                "\nApostar dinero que no tenés siempre puede salir bien. ¡Gracias y adiós!")
             break
-        human.bankroll += 25 + games * games
         reinit_and_shuffle_deck()
         empty_hands()
         games += 1
