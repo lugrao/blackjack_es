@@ -77,13 +77,13 @@ class Player:
         return total_sum
 
 
-def print_hand(player, round=""):
+def print_hand(player, hide_one_card=False):
     print("\nTu mano:" if player.name ==
           human.name else "\nLa mano de EL DEALER:")
-    if player.name == "EL DEALER" and round == "1st":
-        print(f"{dealer.hand[0]}"
+    if hide_one_card == True:
+        print(f"{player.hand[0]}"
               "\nLa otra carta está boca abajo."
-              f"\nValor total: {dealer.hand[0].value} + ¿?")
+              f"\nValor total: {player.hand[0].value} + ¿?")
     else:
         for card in player.hand:
             print(card)
@@ -192,7 +192,7 @@ while True:
     deal_cards(2)
     print_hand(human)
     input('\n[Enter para ver la mano de EL DEALER]')
-    print_hand(dealer, round="1st")
+    print_hand(dealer, hide_one_card=True)
 
    # human's turn
     while round_on:
