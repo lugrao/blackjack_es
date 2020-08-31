@@ -228,7 +228,7 @@ while True:
 
         input("\n[Enter para continuar]")
 
-        while dealer.hand_value() < human.hand_value():
+        while dealer.hand_value() < 17:
             dealer.hit(deck)
             print(
                 f"\nEL DEALER robó otra carta: {dealer.hand[-1]}.")
